@@ -65,7 +65,24 @@ public class PessoaModel {
     }
 
     public void deletarNoBanco(Connection conn) throws SQLException {
-        //TO-DO IMPLEMENTAR
+        String sql = "DELETE FROM pessoas WHERE nome = ?;";
+        
+        try(PreparedStatement pstmt = conn.prepareStatement(sql) ){
+        	
+        	pstmt.setString(1,nome);
+        	
+        	int affectedRows = pstmt.executeUpdate();
+        	
+        	if(affectedRows == 0) {
+        		throw new SQLException("Apagar os Dados, Falhou" + cpf);
+        	}
+        	
+        }catch(SQLException e) {
+        	throw e;
+        }
+        
+        
+        
     }
 
 }
